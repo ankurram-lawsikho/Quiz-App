@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import * as quizService from "./quiz.service";
-import { IQuizSubmission } from "../../types/quiz.types";
+import * as quizService from "../services/quiz.service";
+import { IQuizSubmission } from "../../../types/quiz.types";
 
 /**
  * @swagger
- * /api/quizzes:
+ * /api/v1/quizzes:
  *   get:
  *     summary: Get all quizzes
  *     description: Retrieve all quizzes with their questions and answers. Data is cached in Redis for 1 hour.
@@ -32,7 +32,7 @@ export const getQuizzes = async (req: Request, res: Response) => {
 
 /**
  * @swagger
- * /api/quizzes/{id}:
+ * /api/v1/quizzes/{id}:
  *   get:
  *     summary: Get a specific quiz
  *     description: Retrieve a specific quiz by ID with its questions and answers. Data is cached in Redis for 1 hour.
@@ -76,7 +76,7 @@ export const getQuiz = async (req: Request, res: Response) => {
 
 /**
  * @swagger
- * /api/quizzes:
+ * /api/v1/quizzes:
  *   post:
  *     summary: Create a new quiz
  *     description: Create a new quiz with questions and answers. This will invalidate the quizzes cache.
@@ -141,7 +141,7 @@ export const postQuiz = async (req: Request, res: Response) => {
 
 /**
  * @swagger
- * /api/quizzes/{id}/submit:
+ * /api/v1/quizzes/{id}/submit:
  *   post:
  *     summary: Submit quiz answers
  *     description: Submit answers for a quiz and get the score
@@ -205,7 +205,7 @@ export const postSubmission = async (req: Request, res: Response) => {
 
 /**
  * @swagger
- * /api/quizzes/{id}:
+ * /api/v1/quizzes/{id}:
  *   delete:
  *     summary: Delete a quiz
  *     description: Delete a quiz by ID. This will invalidate the quiz cache.

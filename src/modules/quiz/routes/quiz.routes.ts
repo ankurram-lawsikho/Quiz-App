@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getQuizzes, getQuiz, postQuiz, postSubmission, deleteQuiz } from "./quiz.controller";
+import { getQuizzes, getQuiz, postQuiz, postSubmission, deleteQuiz } from "../controllers/quiz.controller";
 
 const router = Router();
 

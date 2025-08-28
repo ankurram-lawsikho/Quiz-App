@@ -1,6 +1,6 @@
-import { AppDataSource, redisClient } from "../../config/data-source";
-import { Quiz } from "../../entities/Quiz";
-import { IQuiz, IQuizSubmission, IQuizResult } from "../../types/quiz.types";
+import { AppDataSource, redisClient } from "../../../config/data-source";
+import { Quiz } from "../../../entities/Quiz";
+import { IQuiz, IQuizSubmission, IQuizResult } from "../../../types/quiz.types";
 
 const quizRepository = AppDataSource.getRepository(Quiz);
 

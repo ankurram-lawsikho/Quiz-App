@@ -3,7 +3,7 @@ import express from "express";
 import swaggerUi from 'swagger-ui-express';
 import { AppDataSource, redisClient } from "./config/data-source";
 import { specs } from "./config/swagger";
-import quizRoutes from "./modules/quiz/quiz.routes";
+import quizRoutes from "./modules/quiz/routes/quiz.routes";
 
 const main = async () => {
     try {
@@ -25,7 +25,7 @@ const main = async () => {
         customSiteTitle: "Quiz API Documentation"
     }));
 
-    app.use("/api/quizzes", quizRoutes);
+    app.use("/api/v1/quizzes", quizRoutes);
 
     const PORT = process.env.PORT || 3010;
     app.listen(PORT, () => {
