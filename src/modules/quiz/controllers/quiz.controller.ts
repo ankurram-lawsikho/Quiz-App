@@ -242,3 +242,56 @@ export const deleteQuiz = async (req: Request, res: Response) => {
     }
     res.status(204).send();
 };
+
+/**
+ * @swagger
+ * /api/v1/quizzes/{id}:
+ *   put:
+ *     summary: Update quiz title
+ *     description: Update the title of a quiz by ID
+ *     tags: [Quizzes]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The quiz ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 description: The new quiz title
+ *                 example: "Updated Quiz Title"
+ *     responses:
+ *       200:
+ *         description: Quiz title updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Quiz'
+ *       404:
+ *         description: Quiz not found
+ *         content:
+ *           text/plain:
+ *             schema:
+ *               type: string
+ *               example: "Quiz not found"
+ *       400:
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
+export const updateQuizTitle = async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const { title } = req.body;
+    const updatedQuiz = await quizService.updateQuizTitle(id, title);
+    res.json(updatedQuiz);
+};

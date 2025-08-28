@@ -97,3 +97,12 @@ export const deleteQuiz = async (id: number): Promise<boolean> => {
         return false;
     }
 };
+
+export const updateQuizTitle = async (id: number, title: string): Promise<IQuiz | null> => {
+    const quiz = await findQuizById(id);
+    if (!quiz) {
+        return null;
+    }
+    quiz.title = title;
+    return quizRepository.save(quiz);
+};
