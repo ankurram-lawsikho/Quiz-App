@@ -3,6 +3,9 @@ import { DataSource } from "typeorm";
 import { Quiz } from "../entities/Quiz";
 import { Question } from "../entities/Question";
 import { Answer } from "../entities/Answer";
+import { User } from "../entities/User";
+import { Role } from "../entities/Role";
+import { Permission } from "../entities/Permission";
 import { createClient } from "redis";
 
 export const AppDataSource = new DataSource({
@@ -12,9 +15,9 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USERNAME || "postgres",
     password: process.env.DB_PASSWORD || "postgres",
     database: process.env.DB_DATABASE || "quizdb",
-    synchronize: process.env.DB_SYNCHRONIZE === "true" || false, // Only for development
+    synchronize: process.env.DB_SYNCHRONIZE === "true" || false,
     logging: process.env.DB_LOGGING === "true" || false,
-    entities: [Quiz, Question, Answer],
+    entities: [Quiz, Question, Answer, User, Role, Permission],
 });
 
 export const redisClient = createClient({

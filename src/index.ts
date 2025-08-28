@@ -4,6 +4,8 @@ import swaggerUi from 'swagger-ui-express';
 import { AppDataSource, redisClient } from "./config/data-source";
 import { specs } from "./config/swagger";
 import quizRoutes from "./modules/quiz/routes/quiz.routes";
+import authRoutes from "./modules/auth/routes/auth.routes";
+import permissionRoutes from "./modules/auth/routes/permission.routes";
 
 const main = async () => {
     try {
@@ -25,6 +27,9 @@ const main = async () => {
         customSiteTitle: "Quiz API Documentation"
     }));
 
+    // Routes
+    app.use("/api/v1/auth", authRoutes);
+    app.use("/api/v1/auth", permissionRoutes);
     app.use("/api/v1/quizzes", quizRoutes);
 
     const PORT = process.env.PORT || 3010;
